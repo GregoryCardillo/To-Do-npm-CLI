@@ -86,3 +86,51 @@ function listTasks(status) {
 }
 
 // Function to add a new Task
+
+function addTasks(description) {
+    const tasks = readTasks();
+    const newTask = {
+        id: getNextId(tasks),
+        description: description,
+        completed: false,
+        inProgress: false,
+    };
+    tasks.push(newTask);
+    writeTasks(tasks);
+    console.log(
+        `${colors.green}Task added succesfully! (ID: {$newTasks.id)${colors.reset}`
+    );
+}
+
+// Function to update a task's description
+function updateTask(id, newDescription) {
+    const tasks = readTasks();
+    const task = tasks.find((task) => task.id === parseInt(id));
+
+    if (task) {
+        task.inProgress = true;
+        task.completed = false;
+        writeTasks(task);
+        console.log(
+            `${colors.yellow}Task with ID ${id} not found.${colors.reset}`);
+    } else {
+        console.log(`${colors.red}Task with ID ${id} not found.${colors.reset}`);
+    }
+}
+
+// Function deldete a task
+function deleteTask(id) {
+    const tasks = readTasks;
+    const newTasks = tasks.filter((task) => task.id !== parseInt(id));
+
+    if (newTasks.length < tasks.length) {
+        writeTasks(newTasks);
+        console.log(
+            `${colors.green}Task ID ${id} delected succesfully! ${color.reset}`
+        );
+    } else {
+        console.log(`${colors.red}Task with ID ${id} not found.${colors.reset}`);   
+    }
+}
+
+
